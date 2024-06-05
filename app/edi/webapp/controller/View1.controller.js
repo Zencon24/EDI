@@ -293,44 +293,9 @@ sap.ui.define([
     return Controller.extend("edi.controller.View1", {
 
         onPressCreate: function () {
-            console.log("----inside onPressCreate---")
-            var oView = this.getView();
-
-            // create dialog lazily
-            if (!this.byId("uploadDialog")) {
-                console.log("hai")
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "edi.view.UploadPopup",
-                    controller: this
-                }).then(function (oDialog) {
-                    oView.addDependent(oDialog);
-                console.log("hai here")
-                    
-                });
-            } else {
-                this.byId("uploadDialog").open();
-            }
+            this.getOwnerComponent().getRouter().navTo("RouteUpload");
         },
 
-        onCloseDialog: function () {
-            this.byId("uploadDialog").close();
-        },
-
-        onFileChange: function (oEvent) {
-            var oFileUploader = this.byId("fileUploader");
-            var oFile = oEvent.getParameter("files")[0];
-            // Handle file change event if needed
-        },
-
-        onUploadPress: function () {
-            var oFileUploader = this.byId("fileUploader");
-            oFileUploader.upload();
-        },
-
-        onCloseDialog: function () {
-            this.byId("uploadDialog").close();
-        },
         onPressGenerate: function () {
             try {
                 var oTable = this.byId("purchasingDataTable");

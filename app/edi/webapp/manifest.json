@@ -102,8 +102,16 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteUpload",
+          "pattern": "upload",
+          "target": [
+            "TargetUpload"
+          ]
         }
       ],
+      
       "targets": {
         "TargetView1": {
           "viewType": "XML",
@@ -111,6 +119,13 @@
           "clearControlAggregation": false,
           "viewId": "View1",
           "viewName": "View1"
+        },
+        "TargetUpload": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Upload",
+          "viewName": "Upload"
         }
       }
     },

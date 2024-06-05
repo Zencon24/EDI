@@ -5,7 +5,6 @@
     <Dialog
         id="uploadDialog"
         title="Upload File"
-        stretchOnPhone="true"
         afterClose=".onDialogClose">
         
         <content>
@@ -18,10 +17,10 @@
         </content>
         
         <buttons>
-            <Button
+            <Button id="_IDGenButton1"
                 text="Upload"
                 press="onUploadPress"/>
-            <Button
+            <Button id="_IDGenButton2"
                 text="Close"
                 press="onCloseDialog"/>
         </buttons>
