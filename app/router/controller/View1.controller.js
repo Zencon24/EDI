@@ -16,7 +16,7 @@ sap.ui.define([
             if (!this.byId("uploadDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "edi.view.UploadDialog",
+                    name: "router.view.UploadDialog",
                     controller: this
                 }).then(function (oDialog) {
                     oView.addDependent(oDialog);

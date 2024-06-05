@@ -1,28 +1,22 @@
 <core:FragmentDefinition
-    xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:unified="sap.ui.unified">
-    <Dialog
-        id="uploadDialog"
-        title="Upload File"
-        afterClose=".onDialogClose">
-        
-        <content>
-            <unified:FileUploader
-                id="fileUploader"
-                name="myFileUpload"
-                uploadUrl="upload/url/here"
-                change="onFileChange"
-                width="100%"/>
-        </content>
-        
-        <buttons>
-            <Button id="_IDGenButton1"
-                text="Upload"
-                press="onUploadPress"/>
-            <Button id="_IDGenButton2"
-                text="Close"
-                press="onCloseDialog"/>
-        </buttons>
-    </Dialog>
+    xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	class="viewPadding">
+    <l:VerticalLayout id="_IDGenVerticalLayout1">
+		<u:FileUploader
+			id="fileUploader"
+			name="myFileUpload"
+			tooltip="Choose a file to read its content"
+			change="handleFileSelection"
+			style="Emphasized"
+			fileType="xlsx,csv"
+			placeholder="Choose a file for reading...">
+		</u:FileUploader>
+		<Button id="_IDGenButton1"
+			text="Upload File"
+			press="handleUploadPress"/>
+	</l:VerticalLayout>
 </core:FragmentDefinition>

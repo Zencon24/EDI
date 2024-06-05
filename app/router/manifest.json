@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "edi",
+    "id": "router",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -65,7 +65,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "edi.i18n.i18n"
+          "bundleName": "router.i18n.i18n"
         }
       },
       "": {
@@ -90,7 +90,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "edi.view",
+        "viewPath": "router.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -115,7 +115,7 @@
       }
     },
     "rootView": {
-      "viewName": "edi.view.App",
+      "viewName": "router.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

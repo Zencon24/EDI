@@ -1,24 +1,22 @@
-<!-- UploadPopup.fragment.xml -->
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Dialog
-        id="uploadPopup"
-        title="Upload Excel File"
-        contentWidth="400px"
-        contentHeight="300px"
-        draggable="true"
-        beginButton="{uploadButton}"
-        endButton="{cancelButton}">
-        <VBox id="_IDGenVBox1" alignItems="Center">
-            <u:FileUploader
-                id="fileUploader"
-                name="fileUploader"
-                uploadUrl="yourUploadUrl"
-                uploadComplete="onUploadComplete"
-                fileType="['xls', 'xlsx']"
-                maximumFileSize="10"
-                buttonText="Choose File"
-                width="100%"
-                placeholder="Choose a file to upload" />
-        </VBox>
-    </Dialog>
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	class="viewPadding">
+    <l:VerticalLayout id="_IDGenVerticalLayout1">
+		<u:FileUploader
+			id="fileUploader"
+			name="myFileUpload"
+			tooltip="Choose a file to read its content"
+			change="handleFileSelection"
+			style="Emphasized"
+			fileType="xlsx,csv"
+			placeholder="Choose a file for reading...">
+		</u:FileUploader>
+		<Button id="_IDGenButton1"
+			text="Upload File"
+			press="handleUploadPress"/>
+	</l:VerticalLayout>
 </core:FragmentDefinition>
