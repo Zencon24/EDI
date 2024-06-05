@@ -305,6 +305,7 @@ sap.ui.define([
                     controller: this
                 }).then(function (oDialog) {
                     oView.addDependent(oDialog);
+                console.log("hai here")
                     
                 });
             } else {
