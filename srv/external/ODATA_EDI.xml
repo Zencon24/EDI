@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="YY1_GATE_REG_CDS" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="P_Scbo_UserType" sap:label="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="name"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="User" sap:quickinfo="User Name in User Master Record"/>
+                <Property Name="description" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account"/>
+            </EntityType>
+            <EntityType Name="YY1_GATE_REGType" sap:label="GATE_REG" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SAP_UUID"/>
+                </Key>
+                <Property Name="SAP_UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)"/>
+                <Property Name="ZRGNO" Type="Edm.String" MaxLength="20" sap:label="ZRGNO"/>
+                <Property Name="ERNAM" Type="Edm.String" MaxLength="20" sap:label="ERNAM"/>
+                <Property Name="ERDAT" Type="Edm.String" MaxLength="20" sap:label="ERDAT"/>
+                <Property Name="ERZET" Type="Edm.String" MaxLength="20" sap:label="ERZET"/>
+                <Property Name="LIFNR" Type="Edm.String" MaxLength="20" sap:label="LIFNR"/>
+                <Property Name="KUNNR" Type="Edm.String" MaxLength="20" sap:label="KUNNR"/>
+                <Property Name="MATNR" Type="Edm.String" MaxLength="20" sap:label="MATNR"/>
+                <Property Name="EBELN" Type="Edm.String" MaxLength="20" sap:label="EBELN"/>
+                <Property Name="EBELP" Type="Edm.String" MaxLength="20" sap:label="EBELP"/>
+                <Property Name="BUKRS" Type="Edm.String" MaxLength="20" sap:label="BUKRS"/>
+                <Property Name="WERKS" Type="Edm.String" MaxLength="20" sap:label="WERKS"/>
+                <Property Name="LGORT" Type="Edm.String" MaxLength="20" sap:label="LGORT"/>
+                <Property Name="MENGE" Type="Edm.String" MaxLength="20" sap:label="MENGE"/>
+                <Property Name="MEINS" Type="Edm.String" MaxLength="20" sap:label="MEINS"/>
+                <Property Name="LSMNG" Type="Edm.String" MaxLength="20" sap:label="LSMNG"/>
+                <Property Name="LSMEH" Type="Edm.String" MaxLength="20" sap:label="LSMEH"/>
+                <Property Name="ZMDIR" Type="Edm.String" MaxLength="20" sap:label="ZMDIR"/>
+                <Property Name="TXZ01" Type="Edm.String" MaxLength="20" sap:label="TXZ01"/>
+                <Property Name="XBLNR" Type="Edm.String" MaxLength="20" sap:label="XBLNR"/>
+                <Property Name="ZXDAT" Type="Edm.String" MaxLength="20" sap:label="ZXDAT"/>
+                <Property Name="ZCARR" Type="Edm.String" MaxLength="20" sap:label="ZCARR"/>
+                <Property Name="VBELN" Type="Edm.String" MaxLength="20" sap:label="VBELN"/>
+                <Property Name="ZGENT" Type="Edm.String" MaxLength="20" sap:label="ZGENT"/>
+                <Property Name="ZSCPN" Type="Edm.String" MaxLength="20" sap:label="ZSCPN"/>
+                <Property Name="MBLNR" Type="Edm.String" MaxLength="20" sap:label="MBLNR"/>
+                <Property Name="MJAHR" Type="Edm.String" MaxLength="20" sap:label="MJAHR"/>
+                <Property Name="KDMAT" Type="Edm.String" MaxLength="20" sap:label="KDMAT"/>
+                <Property Name="LFAID" Type="Edm.String" MaxLength="20" sap:label="LFAID"/>
+                <Property Name="VNAME" Type="Edm.String" MaxLength="20" sap:label="VNAME"/>
+                <Property Name="CNAME" Type="Edm.String" MaxLength="20" sap:label="CNAME"/>
+                <Property Name="ZCOLN" Type="Edm.String" MaxLength="20" sap:label="ZCOLN"/>
+                <Property Name="ZSTAT" Type="Edm.String" MaxLength="20" sap:label="ZSTAT"/>
+                <Property Name="ZCUSR" Type="Edm.String" MaxLength="20" sap:label="ZCUSR"/>
+                <Property Name="ZCDAT" Type="Edm.String" MaxLength="20" sap:label="ZCDAT"/>
+                <Property Name="ZUPTM" Type="Edm.String" MaxLength="20" sap:label="ZUPTM"/>
+                <Property Name="GRUND" Type="Edm.String" MaxLength="20" sap:label="GRUND"/>
+                <Property Name="ZEILE" Type="Edm.String" MaxLength="20" sap:label="ZEILE"/>
+                <Property Name="ZDINV" Type="Edm.String" MaxLength="20" sap:label="ZDINV"/>
+                <Property Name="ZTEXT" Type="Edm.String" MaxLength="20" sap:label="ZTEXT"/>
+                <Property Name="ZGCAT" Type="Edm.String" MaxLength="20" sap:label="ZGCAT"/>
+                <Property Name="ZEDIN" Type="Edm.String" MaxLength="20" sap:label="ZEDIN"/>
+                <Property Name="AUFNR" Type="Edm.String" MaxLength="20" sap:label="AUFNR"/>
+                <Property Name="ZCONF" Type="Edm.String" MaxLength="20" sap:label="ZCONF"/>
+                <Property Name="SAP_CreatedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created On" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="SAP_CreatedByUser_Text" sap:label="Created By" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_CreatedByUser_Text" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="SAP_LastChangedByUser_Text" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedByUser_Text" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_SAPSysAdminDataChangeUser" Relationship="YY1_GATE_REG_CDS.assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7" FromRole="FromRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7" ToRole="ToRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7"/>
+                <NavigationProperty Name="to_SAPSysAdminDataCreateUser" Relationship="YY1_GATE_REG_CDS.assoc_B88C12DF83210E7F2438BDED89B3A926" FromRole="FromRole_assoc_B88C12DF83210E7F2438BDED89B3A926" ToRole="ToRole_assoc_B88C12DF83210E7F2438BDED89B3A926"/>
+            </EntityType>
+            <Association Name="assoc_B88C12DF83210E7F2438BDED89B3A926" sap:content-version="1">
+                <End Type="YY1_GATE_REG_CDS.YY1_GATE_REGType" Multiplicity="1" Role="FromRole_assoc_B88C12DF83210E7F2438BDED89B3A926"/>
+                <End Type="YY1_GATE_REG_CDS.P_Scbo_UserType" Multiplicity="0..1" Role="ToRole_assoc_B88C12DF83210E7F2438BDED89B3A926"/>
+            </Association>
+            <Association Name="assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7" sap:content-version="1">
+                <End Type="YY1_GATE_REG_CDS.YY1_GATE_REGType" Multiplicity="1" Role="FromRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7"/>
+                <End Type="YY1_GATE_REG_CDS.P_Scbo_UserType" Multiplicity="0..1" Role="ToRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7"/>
+            </Association>
+            <EntityContainer Name="YY1_GATE_REG_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="P_Scbo_User" EntityType="YY1_GATE_REG_CDS.P_Scbo_UserType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="YY1_GATE_REG" EntityType="YY1_GATE_REG_CDS.YY1_GATE_REGType" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7" Association="YY1_GATE_REG_CDS.assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="YY1_GATE_REG" Role="FromRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7"/>
+                    <End EntitySet="P_Scbo_User" Role="ToRole_assoc_2FD2DC6061CC4D37C60F42BD2BA1C6E7"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_B88C12DF83210E7F2438BDED89B3A926" Association="YY1_GATE_REG_CDS.assoc_B88C12DF83210E7F2438BDED89B3A926" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="YY1_GATE_REG" Role="FromRole_assoc_B88C12DF83210E7F2438BDED89B3A926"/>
+                    <End EntitySet="P_Scbo_User" Role="ToRole_assoc_B88C12DF83210E7F2438BDED89B3A926"/>
+                </AssociationSet>
+                <FunctionImport Name="YY1_GATE_REGSap_upsert" ReturnType="YY1_GATE_REG_CDS.YY1_GATE_REGType" EntitySet="YY1_GATE_REG" m:HttpMethod="POST">
+                    <Parameter Name="ZRGNO" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ERNAM" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ERDAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ERZET" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="LIFNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="KUNNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="MATNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="EBELN" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="EBELP" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="BUKRS" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="WERKS" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="LGORT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="MENGE" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="MEINS" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="LSMNG" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="LSMEH" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZMDIR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="TXZ01" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="XBLNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZXDAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZCARR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="VBELN" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZGENT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZSCPN" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="MBLNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="MJAHR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="KDMAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="LFAID" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="VNAME" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="CNAME" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZCOLN" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZSTAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZCUSR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZCDAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZUPTM" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="GRUND" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZEILE" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZDINV" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZTEXT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZGCAT" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZEDIN" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="AUFNR" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                    <Parameter Name="ZCONF" Type="Edm.String" Mode="In" MaxLength="20" sap:label="Text of length 20"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+                <Annotations Target="YY1_GATE_REG_CDS.YY1_GATE_REG_CDS_Entities"
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                    <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                </Annotations>
+                <Annotations Target="YY1_GATE_REG_CDS.YY1_GATE_REGType/ZRGNO"
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                </Annotations>
+                <Annotations Target="YY1_GATE_REG_CDS.YY1_GATE_REG_CDS_Entities/YY1_GATE_REG"
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                    <Annotation Term="Capabilities.NavigationRestrictions">
+                        <Record>
+                            <PropertyValue Property="RestrictedProperties">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SAPSysAdminDataChangeUser"/>
+                                        <PropertyValue Property="InsertRestrictions">
+                                            <Record>
+                                                <PropertyValue Property="Insertable" Bool="false"/>
+                                            </Record>
+                                        </PropertyValue>
+                                    </Record>
+                                    <Record>
+                                        <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SAPSysAdminDataCreateUser"/>
+                                        <PropertyValue Property="InsertRestrictions">
+                                            <Record>
+                                                <PropertyValue Property="Insertable" Bool="false"/>
+                                            </Record>
+                                        </PropertyValue>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <Annotations Target="YY1_GATE_REG_CDS.YY1_GATE_REGType"
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                    <Annotation Term="Common.SemanticKey">
+                        <Collection>
+                            <PropertyPath>ZRGNO</PropertyPath>
+                        </Collection>
+                    </Annotation>
+                </Annotations>
+                <atom:link rel="self" href="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/sap/YY1_GATE_REG_CDS/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                    <atom:link rel="latest-version" href="https://my412313-api.s4hana.cloud.sap/sap/opu/odata/sap/YY1_GATE_REG_CDS/$metadata"
+                        xmlns:atom="http://www.w3.org/2005/Atom"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>

@@ -1,0 +1,24 @@
+<!-- UploadPopup.fragment.xml -->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="edi.controller.View1">
+    <Dialog
+        id="uploadPopup"
+        title="Upload Excel File"
+        contentWidth="400px"
+        contentHeight="300px"
+        draggable="true"
+        beginButton="{uploadButton}"
+        endButton="{cancelButton}">
+        <VBox id="_IDGenVBox1" alignItems="Center">
+            <u:FileUploader
+                id="fileUploader"
+                name="fileUploader"
+                uploadUrl="yourUploadUrl"
+                uploadComplete="onUploadComplete"
+                fileType="['xls', 'xlsx']"
+                maximumFileSize="10"
+                buttonText="Choose File"
+                width="100%"
+                placeholder="Choose a file to upload" />
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>

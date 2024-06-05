@@ -1,0 +1,37 @@
+using adgroup_management_master from '../db/schema';
+
+service CatalogService {
+  @requies : 'ADGROUP_ADMIN_ROLE'
+  entity ADGroups as projection on adgroup_management_master.ADGroup;
+  entity Owners as projection on adgroup_management_master.Owner;
+  entity ADGroupOwners as projection on adgroup_management_master.ADGroupOwner;
+  type GroupDetails {
+            ADGROUP_NAME : String;
+            ADGROUP_DESCRIPTION : String;
+            SYNC_TO_ENTRA : Integer;
+            SYNC_TO_GCP : Integer;
+            ADGROUP_STATUS : Integer;
+            OWNERS: String;
+            OWNER_DISPLAYNAME: String;
+            REQUESTED_BY: String;
+            REQUESTED_ON: DateTime;
+            CHANGED_BY: String;
+            CHANGED_ON: DateTime;
+        }
+  
+  type GroupNames {
+            ADGROUP_NAME : String;
+        }
+      
+  type OwnerInfo {
+            OWNER_ID : String;
+            OWNER_DISPLAYNAME : String
+        }
+
+  function ADGroup_Details() returns array of GroupDetails;
+  function get_adgroup_names_by_search(searchValue: String) returns array of GroupNames;
+  function get_owners_by_search(searchValue: String) returns array of OwnerInfo;
+  
+
+}
+

@@ -1,0 +1,87 @@
+const cds = require('@sap/cds');
+ 
+module.exports = async (srv) => {
+    srv.on('ADGroup_Details', async () => {
+        try {
+            const db = await cds.connect.to('db'); // Connect to the database
+            const SQL = 
+            `SELECT
+                AD.ADGROUP_NAME,
+                AD.ADGROUP_DESCRIPTION,
+                AD.SYNC_TO_ENTRA,
+                AD.SYNC_TO_GCP,
+                AD.ADGROUP_STATUS,
+                STRING_AGG(OD.OWNER_ID || ' (' || OD.OWNER_DISPLAYNAME || ')', ', ') AS OWNERS  -- Concatenates all OWNER_IDs into one string
+            FROM 
+                ADGROUP_MANAGEMENT_MASTER_ADGROUP AS AD
+                JOIN
+                    ADGROUP_MANAGEMENT_MASTER_ADGROUPOWNER AS AO
+                ON
+                    AD.ADGROUP_NAME = AO.ADGROUP_NAME
+                JOIN
+                    ADGROUP_MANAGEMENT_MASTER_OWNER AS OD 
+                ON 
+                    AO.OWNER_ID = OD.OWNER_ID
+            GROUP BY 
+                AD.ADGROUP_NAME, 
+                AD.ADGROUP_DESCRIPTION, 
+                AD.SYNC_TO_ENTRA, 
+                AD.SYNC_TO_GCP, 
+                AD.ADGROUP_STATUS;`
+            console.log("Executing SQL:", SQL)
+            const result = await db.run(SQL);
+           
+            console.log("Query Result:", JSON.stringify(result));
+            if (result && result.length > 0) {
+                return result; // Return the result if data is found
+            } else {
+                console.log("No data found for Detail.");
+                return []; // Return empty array if no data is found
+            }
+        } catch (error) {
+            console.error('Error when executing SQL:', error);
+            return []; // Return an empty array in case of an error
+        }
+    });
+
+    
+    srv.on('get_adgroup_names_by_search', async (req) => {
+        const { searchValue } = req.data; // Destructure searchValue from data
+        console.log("searchValue---", searchValue)
+        try {
+            const db = await cds.connect.to('db'); // Connect to the database
+            const SQL = `SELECT ADGROUP_NAME FROM ADGROUP_MANAGEMENT_MASTER_ADGROUP WHERE LOWER(ADGROUP_NAME) LIKE LOWER('%${searchValue}%')`;
+            console.log("SQL---", SQL)
+            const result = await db.run(SQL);
+            console.log("result---",result)
+            if (result && result.length > 0) {
+                return result; // Return the result if data is found
+            } else {
+                return []; // Return an empty array if no data is found
+            }
+        } catch (error) {
+            console.error('Error when executing SQL:', error);
+            return []; // Return an empty array in case of an error
+        }
+    });
+
+    srv.on('get_owners_by_search', async (req) => {
+        const { searchValue } = req.data; // Destructure searchValue from data
+        console.log("searchValue---", searchValue)
+        try {
+            const db = await cds.connect.to('db'); // Connect to the database
+            const SQL = `SELECT * FROM ADGROUP_MANAGEMENT_MASTER_OWNER WHERE LOWER(OWNER_ID) LIKE LOWER('%${searchValue}%') OR LOWER(OWNER_DISPLAYNAME) LIKE LOWER('%${searchValue}%')`;
+            console.log("SQL---", SQL)
+            const result = await db.run(SQL);
+            console.log("result---",result)
+            if (result && result.length > 0) {
+                return result; // Return the result if data is found
+            } else {
+                return []; // Return an empty array if no data is found
+            }
+        } catch (error) {
+            console.error('Error when executing SQL:', error);
+            return []; // Return an empty array in case of an error
+        }
+    });
+}
