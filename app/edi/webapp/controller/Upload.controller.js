@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, MessageToast, ODataModel) {
     "use strict";
 
-    return Controller.extend("scheduleanu.controller.Upload", {
+    return Controller.extend("edi.controller.Upload", {
         handleFileSelection: function(oEvent) {
             var oFileUploader = oEvent.getSource();
             var oInput = oFileUploader.getDomRef().querySelector("input[type=file]");
